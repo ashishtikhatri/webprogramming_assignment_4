@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Assignment_4</title>
+    <style>
+        #myMap {
+            width: 600px;
+            height: 600px;
+        }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script>
+        var infoWindow = null; // Declare a global variable for the info window
+        
+        function initialize() {
+            var mapOptions = {
+                zoom: 6,
+                center: {lat: 27.6797774, lng: 84.7723481},
+                mapTypeId: google.maps.MapTypeId.HYBRID // Use HYBRID map type
+            };
+
+            var map = new google.maps.Map(document.getElementById('myMap'), mapOptions);
+
+            // Create marker for Mt. Everest
+            var markerNepal = new google.maps.Marker({
+                position: new google.maps.LatLng(27.9881531, 86.8880661),
+                map: map,
+                title: "Mt. Everest"
+            });
+
+            // Add click event listener to Mt. Everest marker
+            google.maps.event.addListener(markerNepal, 'click', function() {
+                if (infoWindow) infoWindow.close(); // Close previous info window
+                infoWindow = new google.maps.InfoWindow({
+                    content: "Mount Everest, also known as Sagarmatha in Nepal. The official elevation of Mount Everest is 8,848.86 meters (29,031.7 feet) above sea level."
+                });
+                infoWindow.open(map, markerNepal);
+            });
+
+            // Create marker for Miklajung, Morang
+            var myhometown = new google.maps.Marker({
+                position: new google.maps.LatLng(26.7225807, 87.5536834),
+                map: map,
+                title: "Miklajung, Morang"
+            });
+
+            // Add click event listener to Miklajung, Morang marker
+            google.maps.event.addListener(myhometown, 'click', function() {
+                if (infoWindow) infoWindow.close(); // Close previous info window
+                infoWindow = new google.maps.InfoWindow({
+                    content: "Morang district is known for its cultural diversity, agricultural activities, and natural beauty. It is home to various ethnic groups and has historical and religious significance."
+                });
+                infoWindow.open(map, myhometown);
+            });
+
+            // Create marker for Janaki Temple
+            var janakiTemple = new google.maps.Marker({
+                position: new google.maps.LatLng(26.73038, 85.9209391),
+                map: map,
+                title: "Janaki Temple"
+            });
+
+            // Add click event listener to Janaki Temple marker
+            google.maps.event.addListener(janakiTemple, 'click', function() {
+                if (infoWindow) infoWindow.close(); // Close previous info window
+                infoWindow = new google.maps.InfoWindow({
+                    content: "The Janaki Temple, also known as Janaki Mandir or Naulakha Mandir, is a famous Hindu temple located in Janakpur, Nepal. It is dedicated to Goddess Sita, who is considered the consort of Lord Rama in Hindu mythology."
+                });
+                infoWindow.open(map, janakiTemple);
+            });
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+</head>
+<body>
+    <div id="myMap"></div>          
+</body>
+</html>
